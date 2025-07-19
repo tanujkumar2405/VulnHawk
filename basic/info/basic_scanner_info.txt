@@ -1,0 +1,79 @@
+# ==========================
+# PORT SCANNER EXPLAINED
+# ==========================
+
+# -------- IMPORTS --------
+import socket
+# 'import' is a Python keyword used to bring in external libraries.
+# 'socket' is a built-in Python module that allows communication over network protocols.
+# It's commonly used for connecting to IP addresses and ports.
+
+# -------- FUNCTION DEFINITION --------
+def scan_ports(target, port_range=(1, 1024)):
+    # 'def' is used to define a function in Python.
+    # 'scan_ports' is the name of the function.
+    # 'target' is a parameter that represents the IP address or domain name to scan.
+    # 'port_range' is a tuple with default value (1, 1024) representing the port range to scan.
+    # Ports are numerical values between 1 and 65535 used to distinguish different services on the same IP.
+
+    print(f"\n[+] Scanning target: {target}")
+    # 'print' displays output to the console.
+    # 'f""' is an f-string which allows embedding variables (like 'target') inside strings.
+
+    open_ports = []
+    # Initializes an empty list to store open ports found during the scan.
+
+    # -------- LOOP THROUGH PORT RANGE --------
+    for port in range(port_range[0], port_range[1] + 1):
+        # 'for' is a loop used to repeat code for a range of values.
+        # 'port_range[0]' is the starting port, and 'port_range[1]' is the ending port.
+        # '+1' is added because 'range' is exclusive of the end value.
+
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Creates a new socket object 's'.
+        # 'socket.AF_INET' specifies IPv4 addresses.
+        # 'socket.SOCK_STREAM' specifies TCP protocol (used for reliable connections).
+
+        s.settimeout(0.5)
+        # Sets a timeout of 0.5 seconds for the connection attempt.
+        # This prevents the program from hanging too long on unresponsive ports.
+
+        result = s.connect_ex((target, port))
+        # Attempts to connect to the target IP/domain on the given port.
+        # 'connect_ex' returns 0 if the connection is successful (i.e., the port is open).
+        # Otherwise, it returns an error code.
+
+        if result == 0:
+            print(f"\n   [OPEN] Port {port}")
+            # If the port is open, print a message.
+            open_ports.append(port)
+            # Add the open port to the 'open_ports' list.
+
+        s.close()
+        # Close the socket after each check to free up system resources.
+
+    # -------- CHECK IF NO OPEN PORTS FOUND --------
+    if not open_ports:
+        print("\n    [!] No Open Ports Found.")
+        # If the list is still empty after scanning, print a message saying no open ports were found.
+
+    return open_ports
+    # Return the list of open ports back to the caller.
+
+# -------- MAIN PROGRAM EXECUTION --------
+if __name__ == "__main__":
+    # This checks if this script is being run directly (not imported as a module).
+    # It's a best practice for writing reusable Python code.
+
+    target = input("Enter target IP/domain: ")
+    # 'input()' prompts the user to enter a target IP or domain name.
+    # The value is stored in the 'target' variable.
+
+    start = int(input("Enter starting port: "))
+    end = int(input("Enter ending port: "))
+    # Prompts the user to enter the start and end port numbers.
+    # 'int()' converts the user input (string) into an integer.
+
+    open_ports = scan_ports(target, (start, end))
+    # Calls the 'scan_ports' function with user-provided target and port range.
+    # Stores the result (list of open ports) in 'open_ports'.
