@@ -1,5 +1,5 @@
 import socket
-
+  
 def scan_ports(target, port_range=(1, 1024)):
     print(f"\n[+] Scanning target: {target}")
     open_ports = []
