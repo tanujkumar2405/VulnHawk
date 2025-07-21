@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environment folders
+venv/
+env/
+.env/
+
+# VS Code settings folder
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Nmap output files if any
+*.xml
+
+# Python test cache
+.pytest_cache/
+
+# Ignore Python compiled files
+*.so
+
+# Ignore any local config files
+*.ini
+*.cfg
+
+# Ignore font folder if you do not want to track fonts (optional)
+# fonts/
+
+# Ignore generated PDF reports if you don't want to push them
+*.pdf
