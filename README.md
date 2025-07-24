@@ -161,6 +161,10 @@ The scan results and detected CVEs will be displayed in the console and optional
 ```bash
     vulnerability-scanner/
     ├── basic/
+    │   ├── info/                  
+    │   │    ├── .gitignore_info.txt
+    │   │    ├── basic_scanner_info.txt
+    │   ├── .gitignore
     │   └── basic_scanner.py               # Basic port scanner script
     ├── advanced/
     │   ├── cve_lookup.py                  # CVE lookup via Vulners API
@@ -170,7 +174,8 @@ The scan results and detected CVEs will be displayed in the console and optional
     │   │    ├── DejaVuSans.ttf
     │   │    ├── DejaVuSans-Bold.ttf
     │   │    └── DejaVuSans-Oblique.ttf
-    ├── README.md                         # This file
+    ├── LICENSE
+    └── README.md                      
 ```
 
 
