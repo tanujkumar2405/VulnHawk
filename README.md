@@ -195,7 +195,7 @@ Please make sure to test your changes and update documentation accordingly.
 
 ## License
 
-This project is open source and available under the *MIT License*.
+This project is open source and available under the *[MIT License](https://github.com/tanujkumar2405/VulnHawk/blob/main/LICENSE)*.
 
 
 **If you have any questions or need help running the scanners, feel free to open an issue or contact me.**
