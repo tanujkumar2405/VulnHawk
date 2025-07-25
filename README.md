@@ -1,209 +1,208 @@
-# Vulnerability Scanner Project
+# VulnHawk - Python-Based Vulnerability Scanner
 
-Welcome to the **Vulnerability Scanner Project**!  
-This repository contains two versions of a Python-based vulnerability scanner:
+Welcome to **VulnHawk** — a powerful and educational open-source vulnerability scanner built in Python.
+
+This repository includes **two versions** of the scanner:
+
+1. **Basic Scanner** – Great for learning port scanning fundamentals.
+2. **Advanced Scanner** – A comprehensive vulnerability assessment tool that integrates Nmap, CVE lookups, PDF reporting, and risk scoring.
 
 ---
 
-## Table of Contents
+## 🔍 Table of Contents
 
-- [Project Overview](#project-overview)  
-- [Basic Version](#basic-version)  
-  - [Description](#basic-description)  
-  - [Usage](#basic-usage)  
-  - [Requirements](#basic-requirements)  
-- [Advanced Version](#advanced-version)  
-  - [Description](#advanced-description)  
-  - [Features](#advanced-features)  
-  - [Setup & Requirements](#advanced-setup--requirements)  
-  - [Usage](#advanced-usage)  
-- [Folder Structure](#folder-structure)  
-- [Contributing](#contributing)  
-- [License](#license)  
+* [Project Overview](#project-overview)
+* [Basic Scanner](#basic-scanner)
+
+  * [Description](#description)
+  * [Usage](#usage)
+  * [Requirements](#requirements)
+* [Advanced Scanner](#advanced-scanner)
+
+  * [Description](#advanced-description)
+  * [Features](#features)
+  * [Setup & Requirements](#setup--requirements)
+  * [Usage](#advanced-usage)
+* [Folder Structure](#folder-structure)
+* [Contributing](#contributing)
+* [Feedback](#feedback)
+* [License](#license)
+* [Author](#author)
+* [Happy Scanning](#happy-scanning)
 
 ---
 
 ## Project Overview
 
-This project is designed to help beginners and enthusiasts learn about network scanning and vulnerability detection using Python.
+**VulnHawk** is built for learners, ethical hackers, and cybersecurity enthusiasts. It starts with the fundamentals and scales to a semi-professional tool that demonstrates:
 
-- The **Basic Version** is a simple port scanner that scans a range of ports on a target host to identify which ports are open.
-- The **Advanced Version** is a more sophisticated tool that uses nmap for detailed scanning, queries public CVE databases to find vulnerabilities, and generates PDF reports with findings.
-
----
-
-## Basic Version
-
-
-### Basic Description
-
-The basic scanner uses Python’s built-in `socket` module to attempt TCP connections on a specified range of ports on a target IP or domain. It prints all open ports found during the scan.
-
-This is perfect for beginners who want to understand how port scanning works in Python.
-
-
-### Basic Usage
-
-1. Navigate to the `basic/` folder:
-
-```bash
-   cd basic/
-```
-2. Run the scanner script:
-
-```bash
-    python basic_scanner.py
-```
-
-3. Enter the target IP or domain when prompted.
-
-4. Enter the starting and ending port numbers for the scan.
-
-The scanner will print all open ports it finds.
-
-
-### Basic Requirements
-
-- Python 3.x (tested on Python 3.6+)
-
-- No additional external libraries needed.
-
+* Port scanning
+* Service fingerprinting
+* Vulnerability detection (CVE lookup)
+* Report generation
 
 ---
 
+## Basic Scanner
 
-## Advanced Version
+### Description
 
+A simple port scanner using Python’s built-in `socket` module. It scans a given range of ports and prints all open ports on the target.
+
+Ideal for beginners who want to:
+
+* Understand TCP handshakes
+* Learn how port scanners work from scratch
+
+### Usage
+
+```bash
+cd basic/
+python basic_scanner.py
+```
+
+* Enter the target IP/domain.
+* Provide the port range (start & end).
+* See the list of open ports.
+
+### Requirements
+
+* Python 3.x (tested with Python 3.6+)
+* No external libraries needed
+
+---
+
+## Advanced Scanner
 
 ### Advanced Description
 
-The advanced scanner combines several tools and techniques to provide a detailed security assessment:
+The advanced version elevates the scanner by using:
 
-- Uses *nmap* for comprehensive port scanning and service detection.
+* `nmap` for detailed port & service scanning
+* Public CVE databases for vulnerability detection
+* `fpdf` for professional report generation
 
-- Queries the Vulners API for known CVEs (Common Vulnerabilities and Exposures) related to detected services.
+This tool suits intermediate to advanced users and demonstrates real-world vulnerability scanning practices.
 
-- Generates a professional PDF report summarizing scan results and detected vulnerabilities.
+### Features
 
-- Includes OS detection, uptime, traceroute information, and CVSS-based risk scoring.
+* 🛠 Service & version detection via Nmap
+* 🧠 Automatic CVE lookup (via Vulners API)
+* 📝 Generates PDF reports with:
 
-This version is aimed at intermediate to advanced users familiar with Python and security concepts.
+  * Scan summary
+  * Detected services & vulnerabilities
+  * OS info, uptime, and traceroute
+  * CVSS-based risk scoring with color-coded severity
+* 📊 Output in both terminal and PDF format
 
+### Setup & Requirements
 
-### Advanced Features
-
-- Service detection and version scanning using nmap.
-
-- Automatic CVE lookup via Vulners API for detected software.
-
-- PDF report generation with detailed scan data and vulnerability risk assessment.
-
-- System information extraction including OS details and uptime.
-
-- Network traceroute hops displayed for the scanned host.
-
-- Color-coded risk levels in the report based on CVSS scores.
-
-
-### Advanced Setup & Requirements
-
-Before running the advanced scanner, install the following dependencies:
-
-1. **Python libraries:**
+Install the dependencies:
 
 ```bash
-    pip install nmap requests fpdf
+pip install nmap requests fpdf
 ```
 
-2. **Nmap tool:**
+Install Nmap:
 
-Make sure *nmap* is installed on your system and available in your PATH.
+* **Linux (Ubuntu/Debian):**
 
-- **Ubuntu/Debian:**
+  ```bash
+  sudo apt-get install nmap
+  ```
+* **Windows:**
+  Download from [https://nmap.org/download.html](https://nmap.org/download.html)
 
-```bash
-    sudo apt-get install nmap
-```
+Ensure the `fonts/` folder exists in `advanced/` directory:
 
-- **Windows:**
-
-Download and install from https://nmap.org/download.html
-
-3. **Fonts folder:**
-The *fonts/* directory contains DejaVu fonts required for PDF report generation. Make sure it exists inside *advanced/* folder.
-
+* Contains required fonts for PDF: `DejaVuSans.ttf`, `DejaVuSans-Bold.ttf`, `DejaVuSans-Oblique.ttf`
 
 ### Advanced Usage
 
-1. Navigate to the *advanced/* folder:
-
 ```bash
-    cd advanced/
-```
-2. Run the scanner:
-
-```bash
-    python scanner.py
+cd advanced/
+python scanner.py
 ```
 
-3. Enter the target IP or domain when prompted.
+* Enter target IP/domain
+* Optional: Generate a PDF report
 
-4. After scanning, choose whether to generate a PDF report.
-
-The scan results and detected CVEs will be displayed in the console and optionally saved as a PDF in the current folder.
-
+Scan results and CVEs are displayed in the terminal and saved to a PDF report.
 
 ---
-
 
 ## Folder Structure
 
-```bash
-    vulnerability-scanner/
-    ├── basic/
-    │   ├── info/                  
-    │   │    ├── .gitignore_info.txt
-    │   │    ├── basic_scanner_info.txt
-    │   ├── .gitignore
-    │   └── basic_scanner.py               # Basic port scanner script
-    ├── advanced/
-    │   ├── cve_lookup.py                  # CVE lookup via Vulners API
-    │   ├── generate_report.py             # PDF report generator
-    │   ├── scanner.py                    # Main advanced scanner with nmap
-    │   ├── fonts/                        # Required fonts for PDF reports
-    │   │    ├── DejaVuSans.ttf
-    │   │    ├── DejaVuSans-Bold.ttf
-    │   │    └── DejaVuSans-Oblique.ttf
-    ├── LICENSE
-    └── README.md                      
+```
+vuln-hawk/
+├── basic/
+│   ├── info/
+│   │   ├── .gitignore_info.txt
+│   │   ├── basic_scanner_info.txt
+│   ├── .gitignore
+│   └── basic_scanner.py
+├── advanced/
+│   ├── scanner.py
+│   ├── cve_lookup.py
+│   ├── generate_report.py
+│   ├── .gitignore
+│   ├── README.md
+│   ├── requirements.txt
+│   ├── fonts/
+│   │   ├── DejaVuSans.ttf
+│   │   ├── DejaVuSans-Bold.ttf
+│   │   └── DejaVuSans-Oblique.ttf
+│   ├── info/
+│   │   ├── .gitignore_info.txt
+│   │   ├── cve_lookup_info.md
+│   │   ├── generate_report_info.md
+│   │   ├── requirements_info.md
+│   │   ├── scanner_info.md
+├── LICENSE
+└── README.md
 ```
 
-
 ---
-
 
 ## Contributing
 
-Contributions are welcome! You can:
+All contributions are welcome! You can:
 
-- Report bugs or issues
+* Report bugs or open issues
+* Suggest new features
+* Submit pull requests
 
-- Suggest new features
-
-- Submit pull requests with improvements
-
-Please make sure to test your changes and update documentation accordingly.
-
+Make sure your code is tested and well-documented before submitting.
 
 ---
 
+## Feedback
+Got a bug, feature request, or improvement idea?
+👉 Open an issue or start a discussion on [GitHub Issues](https://github.com/tanujkumar2405/VulnHawk/issues)
+
+---
 
 ## License
 
-This project is open source and available under the *[MIT License](https://github.com/tanujkumar2405/VulnHawk/blob/main/LICENSE)*.
+This project is licensed under the **MIT License** — see the [LICENSE](https://github.com/tanujkumar2405/VulnHawk/blob/main/LICENSE) file for details.
 
+---
 
-**If you have any questions or need help running the scanners, feel free to open an issue or contact me.**
+## Author
 
-***Happy scanning! 🔍🔐***
+Built and maintained by [Tanuj Kumar](https://www.linkedin.com/in/tanuj-kumar-cybersecurity). — Creator and Maintainer  
+[GitHub](https://github.com/tanujkumar2405) | [LinkedIn](https://www.linkedin.com/in/tanuj-kumar-cybersecurity)  
+
+  
+
+If you find this project useful, please ⭐ the repository and share it with others.
+
+---
+
+## Happy Scanning
+
+**Just a developer who loves breaking and fixing stuff**.  
+— *Tanuj Kumar* 💻🔐
+
 
